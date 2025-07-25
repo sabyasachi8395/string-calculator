@@ -31,5 +31,35 @@ RSpec.describe Calculator do
         end
       end
     end
+
+    context 'when there are more then 2 numbers' do
+      context 'when there are 3 numbers' do
+        context 'all numbers are non zero' do
+          it 'should return sum of all 3 numbers' do
+            expect(described_class.add("1,2,3")).to eq(6)
+          end
+        end
+
+        context '1 number is zero and rest are non zero' do
+          it 'should return sum of all 3 numbers' do
+            expect(described_class.add("1,0,3")).to eq(4)
+          end
+        end
+      end
+
+      context 'when there are 6 numbers' do
+        context 'all numbers are non zero' do
+          it 'should return sum of all 6 numbers' do
+            expect(described_class.add("1,2,3,3,8,10")).to eq(27)
+          end
+        end
+
+        context '1 number is zero and rest are non zero' do
+          it 'should return sum of all 6 numbers' do
+            expect(described_class.add("1,2,3,0,8,10")).to eq(24)
+          end
+        end
+      end
+    end
   end
 end
