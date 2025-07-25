@@ -13,7 +13,10 @@ class Calculator
     # Return 0 if the number_str is empty, i.e. received empty string
     return 0 if number_str.empty?
 
-    # Split the string with the delimener `,`, then change the type for all to integer and sum to get the result
-    number_str.split(",").map(&:to_i).sum
+    # List of supported delimiters, currently `,` & `\n`
+    delimiters = /[,\n]/
+
+    # Split the string with the defined delimiters, then change the type for all to integer and sum to get the result
+    number_str.split(delimiters).map(&:to_i).sum
   end
 end

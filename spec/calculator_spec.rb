@@ -152,7 +152,7 @@ RSpec.describe Calculator do
 
         context 'when both the numbers are non zero' do
           it 'should return the sum of 2 numbers' do
-            expect(described_class.add("1,5")).to eq(6)
+            expect(described_class.add("1\n5")).to eq(6)
           end
         end
       end
@@ -161,13 +161,13 @@ RSpec.describe Calculator do
         context 'when there are 3 numbers' do
           context 'all numbers are non zero' do
             it 'should return sum of all 3 numbers' do
-              expect(described_class.add("1,2,3")).to eq(6)
+              expect(described_class.add("1\n2,3")).to eq(6)
             end
           end
 
           context '1 number is zero and rest are non zero' do
             it 'should return sum of all 3 numbers' do
-              expect(described_class.add("1,0,3")).to eq(4)
+              expect(described_class.add("1,0\n3")).to eq(4)
             end
           end
         end
@@ -175,13 +175,13 @@ RSpec.describe Calculator do
         context 'when there are 6 numbers' do
           context 'all numbers are non zero' do
             it 'should return sum of all 6 numbers' do
-              expect(described_class.add("1,2,3,3,8,10")).to eq(27)
+              expect(described_class.add("1,2\n3,3\n8\n10")).to eq(27)
             end
           end
 
           context '1 number is zero and rest are non zero' do
             it 'should return sum of all 6 numbers' do
-              expect(described_class.add("1,2,3,0,8,10")).to eq(24)
+              expect(described_class.add("1\n2\n3,0,8\n10")).to eq(24)
             end
           end
         end
