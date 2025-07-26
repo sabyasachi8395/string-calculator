@@ -24,8 +24,18 @@ class Calculator
     # Get the delimiters and the number string with delimiters
     delimiters, delimited_str = detect_delimiters(number_str)
 
-    # Split the string with the defined delimiters, then change the type for all to integer and sum to get the result
-    delimited_str.split(delimiters).map(&:to_i).sum
+    # Split the string with the defined delimiters
+    numbers = delimited_str.split(delimiters).map(&:to_i)
+
+    # Select the negative numbers
+    negative_numbers = numbers.select { |num| num.negative? }
+
+    if negative_numbers.any?
+      raise "negative numbers not allowed #{negative_numbers.join(', ')}"
+    end
+
+    # Return the sum of the positive numbers
+    numbers.sum
   end
 
   #
