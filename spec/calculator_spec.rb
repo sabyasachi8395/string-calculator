@@ -2,7 +2,7 @@ require 'calculator'
 
 RSpec.describe Calculator do
   describe '.add' do
-    context 'when delimeter is ,' do
+    context 'when delimiter is ,' do
       it 'returns 0 for an empty string' do
         expect(described_class.add("")).to eq(0)
       end
@@ -64,7 +64,7 @@ RSpec.describe Calculator do
       end
     end
 
-    context 'when delimeter is \n' do
+    context 'when delimiter is \n' do
       it 'returns 0 for an empty string' do
         expect(described_class.add("")).to eq(0)
       end
@@ -126,7 +126,7 @@ RSpec.describe Calculator do
       end
     end
 
-    context 'when delimeters are both \n and ,' do
+    context 'when delimiters are both \n and ,' do
       it 'returns 0 for an empty string' do
         expect(described_class.add("")).to eq(0)
       end
@@ -184,6 +184,38 @@ RSpec.describe Calculator do
               expect(described_class.add("1\n2\n3,0,8\n10")).to eq(24)
             end
           end
+        end
+      end
+    end
+
+    context 'with custom delimiters' do
+      context 'with delimiter as ;' do
+        it 'should return sum when there are 2 numbers' do
+          expect(described_class.add("//;\n1;2")).to eq(3)
+        end
+
+        it 'should return sum when there are 4 numbers' do
+          expect(described_class.add("//;\n1;2;10;20")).to eq(33)
+        end
+      end
+
+      context 'with delimiter as ,' do
+        it 'should return sum when there are 2 numbers' do
+          expect(described_class.add("//,\n1,2")).to eq(3)
+        end
+
+        it 'should return sum when there are 4 numbers' do
+          expect(described_class.add("//,\n1,2,10,20")).to eq(33)
+        end
+      end
+
+      context 'with delimiter as &' do
+        it 'should return sum when there are 2 numbers' do
+          expect(described_class.add("//&\n1&2")).to eq(3)
+        end
+
+        it 'should return sum when there are 4 numbers' do
+          expect(described_class.add("//&\n1&2&10&20")).to eq(33)
         end
       end
     end
