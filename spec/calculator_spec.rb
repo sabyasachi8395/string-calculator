@@ -72,7 +72,7 @@ RSpec.describe Calculator do
           end
 
           it 'raise error for the negative number' do
-            expect(described_class.add("-1")).to raise_error("negative numbers not allowed -1")
+            expect { described_class.add("-1") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
           end
         end
 
@@ -83,7 +83,7 @@ RSpec.describe Calculator do
             end
 
             it 'should raise error due to the negative number' do
-              expect(described_class.add("-1,0")).to raise_error("negative numbers not allowed -1")
+              expect { described_class.add("-1,0") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
             end
           end
 
@@ -99,11 +99,11 @@ RSpec.describe Calculator do
             end
 
             it 'should raise error due to negative numbers' do
-              expect(described_class.add("1,-5")).to raise_error("negative numbers not allowed -5")
+              expect { described_class.add("1,-5") }.to raise_error(RuntimeError, "negative numbers not allowed -5")
             end
 
             it 'should raise error due to negative numbers' do
-              expect(described_class.add("-1,-5")).to raise_error("negative numbers not allowed -1, -5")
+              expect { described_class.add("-1,-5") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -5")
             end
           end
         end
@@ -116,7 +116,7 @@ RSpec.describe Calculator do
               end
 
               it 'should raise error due to negative number' do
-                expect(described_class.add("-1,2,-3")).to raise_error("negative numbers not allowed -1, -3")
+                expect { described_class.add("-1,2,-3") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -3")
               end
             end
 
@@ -134,7 +134,7 @@ RSpec.describe Calculator do
               end
 
               it 'should raise error due to negative numbers' do
-                expect(described_class.add("1,2,-3,3,8,-10")).to raise_error("negative numbers not allowed -3, -10")
+                expect { described_class.add("1,2,-3,3,8,-10") }.to raise_error(RuntimeError, "negative numbers not allowed -3, -10")
               end
             end
 
@@ -159,7 +159,7 @@ RSpec.describe Calculator do
         end
 
         it 'raise error if any negative number is passed' do
-          expect(described_class.add("-1")).to raise_error("negative numbers not allowed -1")
+          expect { described_class.add("-1") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
         end
       end
 
@@ -170,7 +170,7 @@ RSpec.describe Calculator do
           end
 
           it 'raise error if any negative number is passed' do
-            expect(described_class.add("-1\n0")).to raise_error("negative numbers not allowed -1")
+            expect { described_class.add("-1\n0") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
           end
         end
 
@@ -186,7 +186,7 @@ RSpec.describe Calculator do
           end
 
           it 'raise error if any negative number is passed' do
-            expect(described_class.add("-1\n5")).to raise_error("negative numbers not allowed -1")
+            expect { described_class.add("-1\n5") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
           end
         end
       end
@@ -199,17 +199,17 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1\n2\n5")).to raise_error("negative numbers not allowed -1")
+              expect { described_class.add("-1\n2\n5") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
             end
           end
 
           context '1 number is zero and rest are non zero' do
             it 'should return sum of all 3 numbers' do
-              expect(described_class.add("1n\0\n3")).to eq(4)
+              expect(described_class.add("1\n0\n3")).to eq(4)
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1\n0\n5")).to raise_error("negative numbers not allowed -1")
+              expect { described_class.add("-1\n0\n5") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
             end
           end
         end
@@ -221,7 +221,7 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1\n2\n3\n3\n8\n10")).to raise_error("negative numbers not allowed -1")
+              expect { described_class.add("-1\n2\n3\n3\n8\n10") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
             end
           end
 
@@ -231,7 +231,7 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1\n2\n-3\n0\n8\n10")).to raise_error("negative numbers not allowed -1, -3")
+              expect { described_class.add("-1\n2\n-3\n0\n8\n10") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -3")
             end
           end
         end
@@ -249,7 +249,7 @@ RSpec.describe Calculator do
         end
 
         it 'raise error if any negative number is passed' do
-          expect(described_class.add("-1")).to raise_error("negative numbers not allowed -1")
+          expect { described_class.add("-1") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
         end
       end
 
@@ -260,7 +260,7 @@ RSpec.describe Calculator do
           end
 
           it 'raise error if any negative number is passed' do
-            expect(described_class.add("-1,0")).to raise_error("negative numbers not allowed -1")
+            expect { described_class.add("-1,0") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
           end
         end
 
@@ -276,7 +276,7 @@ RSpec.describe Calculator do
           end
 
           it 'raise error if any negative number is passed' do
-            expect(described_class.add("-1\n5")).to raise_error("negative numbers not allowed -1")
+            expect { described_class.add("-1\n5") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
           end
         end
       end
@@ -289,7 +289,7 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1\n2,3")).to raise_error("negative numbers not allowed -1")
+              expect { described_class.add("-1\n2,3") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
             end
           end
 
@@ -299,7 +299,7 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1,0\n3")).to raise_error("negative numbers not allowed -1")
+              expect { described_class.add("-1,0\n3") }.to raise_error(RuntimeError, "negative numbers not allowed -1")
             end
           end
         end
@@ -311,7 +311,7 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1,2\n3,3\n-8\n10")).to raise_error("negative numbers not allowed -1,-8")
+              expect { described_class.add("-1,2\n3,3\n-8\n10") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -8")
             end
           end
 
@@ -321,7 +321,7 @@ RSpec.describe Calculator do
             end
 
             it 'raise error if any negative number is passed' do
-              expect(described_class.add("-1\n2\n3,0,-8\n10")).to raise_error("negative numbers not allowed -1,-8")
+              expect { described_class.add("-1\n2\n3,0,-8\n10") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -8")
             end
           end
         end
@@ -339,7 +339,7 @@ RSpec.describe Calculator do
         end
 
         it 'raise error if any negative number is passed' do
-          expect(described_class.add("//;\n-1;2;-10;20")).to raise_error("negative numbers not allowed -1,-10")
+          expect { described_class.add("//;\n-1;2;-10;20") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -10")
         end
       end
 
@@ -353,7 +353,7 @@ RSpec.describe Calculator do
         end
 
         it 'raise error if any negative number is passed' do
-          expect(described_class.add("//,\n-1,2,-10,20")).to raise_error("negative numbers not allowed -1,-10")
+          expect { described_class.add("//,\n-1,2,-10,20") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -10")
         end
       end
 
@@ -367,7 +367,7 @@ RSpec.describe Calculator do
         end
 
         it 'raise error if any negative number is passed' do
-          expect(described_class.add("//&\n-1&2&-10&20")).to raise_error("negative numbers not allowed -1,-10")
+          expect { described_class.add("//&\n-1&2&-10&20") }.to raise_error(RuntimeError, "negative numbers not allowed -1, -10")
         end
       end
     end
